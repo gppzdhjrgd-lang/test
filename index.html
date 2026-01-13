@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lekeplassguiden</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-o9N1j7kP6T1kXq45Y5r0gkRkG6r9Q2QbLkH1j0ao+7E="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">Kartbasert oversikt</p>
+        <h1>Lekeplassguiden</h1>
+        <p class="subtitle">
+          Finn åpne lekeplasser nær restauranter, kafeer og elbilladere – og velg
+          tur basert på din prioritering.
+        </p>
+      </div>
+      <div class="legend">
+        <div><span class="dot playground"></span>Lekeplass</div>
+        <div><span class="dot food"></span>Restaurant/kafé</div>
+        <div><span class="dot charger"></span>Elbillader</div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="controls">
+        <h2>Parametre</h2>
+        <label>
+          Søkeradius (meter)
+          <input id="radius" type="range" min="500" max="3000" step="100" value="1500" />
+        </label>
+        <div class="range-value" id="radiusValue">1500 m</div>
+
+        <label>
+          Vekt: nærhet til mat
+          <input id="foodWeight" type="range" min="0" max="5" step="1" value="3" />
+        </label>
+        <div class="range-value" id="foodWeightValue">3</div>
+
+        <label>
+          Vekt: nærhet til lading
+          <input id="chargerWeight" type="range" min="0" max="5" step="1" value="2" />
+        </label>
+        <div class="range-value" id="chargerWeightValue">2</div>
+
+        <label>
+          Maks avstand for full score (meter)
+          <input id="idealDistance" type="range" min="100" max="1000" step="50" value="400" />
+        </label>
+        <div class="range-value" id="idealDistanceValue">400 m</div>
+
+        <button id="refresh" class="primary">Oppdater kartet</button>
+        <p class="hint">
+          Flytt kartet og trykk «Oppdater kartet» for å hente nye data fra
+          OpenStreetMap.
+        </p>
+        <div class="data-sources">
+          <h3>Datakilder</h3>
+          <ul>
+            <li>OpenStreetMap via Overpass API</li>
+            <li>Bakgrunnskart: OpenStreetMap</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="map-section">
+        <div id="map"></div>
+        <aside class="results">
+          <h2>Beste forslag</h2>
+          <ol id="resultsList"></ol>
+        </aside>
+      </section>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
